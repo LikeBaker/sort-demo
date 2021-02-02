@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
-public class Heapsort {
-    public void heapSort(int[] arr){
+class Heapsort {
+    void heapSort(int[] arr){
         for (int i=(arr.length/2-1); i>=0; i--) {// 将arr够构建成一个大顶堆。每次循环，处理一个根节点
             //从第一个非叶子节点从下至上，从右至左调整结构
             HeapAdjust(arr, i, arr.length);
