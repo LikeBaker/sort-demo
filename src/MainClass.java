@@ -13,7 +13,9 @@ public class MainClass {
 //        Heapsort heapsort = new Heapsort();
 //        heapsort.heapSort(arr);
 
-        new InsertionSort().insertionSort(arr);
+//        new InsertionSort().insertionSort(arr);
+
+//        new MergeSort().mergeSort(arr, 0, arr.length-1);
 
         System.out.println("result " + Arrays.toString(arr));
     }
