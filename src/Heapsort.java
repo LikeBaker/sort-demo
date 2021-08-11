@@ -1,74 +1,66 @@
 import java.util.Arrays;
 
+//堆排序
 class Heapsort {
     void heapSort(int[] arr){
-        for (int i=(arr.length/2-1); i>=0; i--) {// 将arr够构建成一个大顶堆。每次循环，处理一个根节点
-            //从第一个非叶子节点从下至上，从右至左调整结构
-            HeapAdjust(arr, i, arr.length);
+
+        //依次查看非叶子结点
+        for (int i=arr.length/2; i>=0; i--){
+            heapAdjust(arr, i, arr.length-1);
         }
 
-        System.out.println("第一次调整完毕");
+        System.out.println("数组重构为大顶堆 " + Arrays.toString(arr));
 
-        //调整堆结构+交换堆顶元素与末尾元素
-        for (int i = arr.length - 1; i > 0; i--) {
-            //将堆顶元素与末尾元素进行交换
-            int temp = arr[i];
-            arr[i] = arr[0];
-            arr[0] = temp;
-
-            //重新对堆进行调整
-            HeapAdjust(arr, 0, i);
+        for (int i=arr.length-1; i>0; i--){
+            swap(arr, 0, i);
+            heapAdjust(arr, 0, i-1);
         }
+
     }
 
-    private void swap(int[] arr, int i, int i1) {
-        int temp = arr[i];
-        arr[i] = arr[i1];
-        arr[i1] = temp;
+    //交换元素
+    private void swap(int[] arr, int i1, int i2) {
+        int temp = arr[i1];
+        arr[i1] = arr[i2];
+        arr[i2] = temp;
     }
 
-    private void HeapAdjust(int[] arr, int parent, int length) {
-        int temp, j;
-        temp = arr[parent];//父节点
-        int lChild = 2 * parent + 1;//左孩子
+    //将数组调整成大顶堆
+    private void heapAdjust(int[] arr, int start, int end) {
 
-        while (lChild<length) {
-            //右孩子
-            int rChild = lChild + 1;
-            //如果右孩子右节点，并且右孩子节点大于左孩子节点，则选取右孩子节点
-            if (rChild<length && arr[rChild]>arr[lChild]) {
-                lChild++;
+        int temp = arr[start];
+        int i;
+        //向下查看叶子结点
+        for (i=start*2+1; i<=end; i*=2+1){
+            if(i<end && arr[i] < arr[i+1]){
+                i++;
             }
 
-            //如果父节点的值已经大于孩子节点的值，则直接结束
-            if (temp>arr[lChild]) {
+            if(temp>arr[i]){
                 break;
             }
 
-            //把孩子节点的值赋给父节点
-            arr[parent] = arr[lChild];
-
-            //选取孩子节点的左孩子节点，继续向下筛选， todo 向下筛选的过程
-            parent = lChild;
-            lChild = lChild*2 + 1;
+            arr[start] = arr[i];
+            start = i;
         }
 
-        arr[parent] = temp;
-
-        System.out.println(Arrays.toString(arr));
-//        for (j=2*parent; j<length; j*=2) {
-//            if (j<length && arr[j]<arr[j+1]) {
-//                ++j;
-//            }
-//
-//            if (temp>=arr[j]){
-//                break;
-//            }
-//
-//            arr[parent] = arr[j];
-//            parent = j;
-//        }
-//
-//        arr[parent] = temp;
+        arr[start] = temp;
     }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
