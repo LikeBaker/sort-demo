@@ -1,4 +1,3 @@
-import jdk.nashorn.tools.Shell;
 
 import java.util.Arrays;
 
@@ -18,11 +17,11 @@ public class MainClass {
 
 //        new InsertionSort().insertionSort(arr);
 
-//        new MergeSort().mergeSort(arr, 0, arr.length-1);
+        new MergeSort().mergeSort(arr, arr, 0, arr.length-1);
 
 //        new ShellSort().shellSort(arr);
 
-        new Heapsort().heapSort(arr);
+//        new Heapsort().heapSort(arr);
 
         System.out.println("result " + Arrays.toString(arr));
     }
